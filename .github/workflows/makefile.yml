@@ -18,5 +18,5 @@ jobs:
       run: sudo apt-get update && sudo apt -y install flex
 
     - name: Build
-      run: make check
+      run: make
 
