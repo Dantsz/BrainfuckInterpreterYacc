@@ -1,3 +1,6 @@
 y.tab.c
 lex.yy.c
 bfinterpreter
+bfinterpreter.tab.c
+.gitignore
+bfinterpreter.tab.h
