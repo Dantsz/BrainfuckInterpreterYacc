@@ -23,6 +23,14 @@ char* concatenate_strings(char* str1, char op ,char* str2) {
 %token<termen> NUMBER
 %token<operator> OPERATOR
 %type<termen> EXP
+%token PINCREMENT
+%token PDECREMENT
+%token DINCREMENT
+%token DDECREMENT
+%token WRITE
+%token READ
+%token LOOPBEGIN
+%token LOOPEND
 %%
 EXP : EXP EXP OPERATOR
     {
