@@ -3,6 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#define DATA_SIZE 30000
+unsigned char data[DATA_SIZE];
+size_t data_pointer;
+
 char* concatenate_strings(char* str1, char op ,char* str2) {
     size_t len1 = strlen(str1);
     size_t len2 = strlen(str2);
@@ -18,32 +23,40 @@ char* concatenate_strings(char* str1, char op ,char* str2) {
 }
 %}
 
-%union {char* termen; char operator;}
+%union {char* termen; char operator; int offset;}
 %start S
-%token<termen> NUMBER
-%token<operator> OPERATOR
+//%token<termen> NUMBER
+//%token<operator> OPERATOR
 %type<termen> EXP
-%token PINCREMENT
-%token PDECREMENT
-%token DINCREMENT
-%token DDECREMENT
-%token WRITE
+%token PINCREMENT 
+%token PDECREMENT 
+%token DINCREMENT 
+%token DDECREMENT 
+%token WRITE 
 %token READ
-%token LOOPBEGIN
+%token<offset> LOOPBEGIN
 %token LOOPEND
 %%
-EXP : EXP EXP OPERATOR
-    {
-        $$ = concatenate_strings($1,$3,$2);
-        free($1);
-        free($2);
-    }
-    | NUMBER
+
+program: EXP
+       | program EXP
+       ;
+
+EXP : PINCREMENT {if(data_pointer > DATA_SIZE ) {data_pointer ++;}};
+    | PDECREMENT {if(data_pointer > 0 ){data_pointer--;} }
+    | DINCREMENT {data[data_pointer]++;}
+    | DDECREMENT {data[data_pointer]--;}
+    | WRITE {printf("%d", (int)data[data_pointer]);}
+    | while_statement
     ;
-S : EXP {printf("%s" , $1);};
+while_statement: LOOPBEGIN program LOOPEND ;
+
+S : program;
 %%#include <stdio.h>
 #include "lex.yy.c"
 main() {
+    data_pointer = 0;
+    memset(data,0,DATA_SIZE);
 	return yyparse();
 }
 int yyerror( char *s ) { fprintf( stderr, "%s\n", s); }
