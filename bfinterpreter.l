@@ -11,7 +11,9 @@
 \, {return READ;}
 \[ { yylval.offset = offset; return LOOPBEGIN;} 
 \] {return LOOPEND;}
-. ;
+
+\n
+.  
 %%
 int yywrap() { return 1; }
 
