@@ -472,18 +472,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  14
+#define YYFINAL  12
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   19
+#define YYLAST   8
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  11
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  7
+#define YYNNTS  5
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  13
+#define YYNRULES  12
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  17
+#define YYNSTATES  14
 
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   265
@@ -532,7 +532,7 @@ static const yytype_int8 yytranslate[] =
 static const yytype_int8 yyrline[] =
 {
        0,    33,    33,    34,    37,    38,    39,    40,    41,    42,
-      44,    45,    58,    60
+      43,    45,    46
 };
 #endif
 
@@ -543,7 +543,7 @@ static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "PINCREMENT", "PDECREMENT", "DINCREMENT",
   "DDECREMENT", "WRITE", "READ", "LOOPBEGIN", "LOOPEND", "$accept",
-  "program", "EXP", "loop_begin", "loop_end", "while_statement", "S", YY_NULLPTR
+  "program", "EXP", "prelude", "S", YY_NULLPTR
 };
 #endif
 
@@ -557,7 +557,7 @@ static const yytype_int16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF (-5)
+#define YYPACT_NINF (-4)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -571,8 +571,8 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-       5,    -5,    -5,    -5,    -5,    -5,    -5,     5,    -5,     5,
-      -5,    15,    -5,    -3,    -5,    -5,    -5
+      -4,    -3,     5,    -4,    -4,    -4,    -4,    -4,    -4,    -4,
+      -3,    -4,    -4,    -4
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -580,20 +580,20 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     4,     5,     6,     7,     8,    10,    13,     2,     0,
-       9,     0,     3,     0,     1,    11,    12
+      11,     0,     0,     4,     5,     6,     7,     8,     9,    10,
+      12,     2,     1,     3
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -5,    -4,     6,    -5,    -5,    -5,    -5
+      -4,    -4,    -2,    -4,    -4
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     7,     8,     9,    16,    10,    11
+      -1,    10,    11,     1,     2
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -601,36 +601,34 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,     2,     3,     4,     5,    13,     6,    15,     1,     2,
-       3,     4,     5,    12,     6,    14,     0,     0,     0,    12
+       3,     4,     5,     6,     7,    12,     8,     9,    13
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     4,     5,     6,     7,     9,     9,    10,     3,     4,
-       5,     6,     7,     7,     9,     0,    -1,    -1,    -1,    13
+       3,     4,     5,     6,     7,     0,     9,    10,    10
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,     4,     5,     6,     7,     9,    12,    13,    14,
-      16,    17,    13,    12,     0,    10,    15
+       0,    14,    15,     3,     4,     5,     6,     7,     9,    10,
+      12,    13,     0,    13
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
        0,    11,    12,    12,    13,    13,    13,    13,    13,    13,
-      14,    15,    16,    17
+      13,    14,    15
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
        0,     2,     1,     2,     1,     1,     1,     1,     1,     1,
-       1,     1,     3,     1
+       1,     0,     2
 };
 
 
@@ -1327,60 +1325,54 @@ yyreduce:
     {
   case 4:
 #line 37 "BFToJSF.y"
-                 {if(data_pointer < DATA_SIZE ) {data_pointer ++;}}
-#line 1332 "BFToJSF.yy.c"
+                 {printf("data_pointer++;");}
+#line 1330 "BFToJSF.yy.c"
     break;
 
   case 5:
 #line 38 "BFToJSF.y"
-                 {if(data_pointer > 0 ){data_pointer--;} }
-#line 1338 "BFToJSF.yy.c"
+                 {printf("data_pointer--;");}
+#line 1336 "BFToJSF.yy.c"
     break;
 
   case 6:
 #line 39 "BFToJSF.y"
-                 {data[data_pointer]++;}
-#line 1344 "BFToJSF.yy.c"
+                 {printf("data[data_pointer]++;");}
+#line 1342 "BFToJSF.yy.c"
     break;
 
   case 7:
 #line 40 "BFToJSF.y"
-                 {data[data_pointer]--;}
-#line 1350 "BFToJSF.yy.c"
+                 {printf("data[data_pointer]--;");}
+#line 1348 "BFToJSF.yy.c"
     break;
 
   case 8:
 #line 41 "BFToJSF.y"
-            {printf("%c",data[data_pointer]);}
-#line 1356 "BFToJSF.yy.c"
+            {printf("console.log(String.fromCharCode(data[data_pointer]));");}
+#line 1354 "BFToJSF.yy.c"
+    break;
+
+  case 9:
+#line 42 "BFToJSF.y"
+                {printf("while(data[data_pointer]){");}
+#line 1360 "BFToJSF.yy.c"
     break;
 
   case 10:
-#line 44 "BFToJSF.y"
-                      { /*printf("LOOP BEGIN AT %d\n",$1);*/ (yyval.offset) = (yyvsp[0].offset); stack_pointer++; stack[stack_pointer] = (yyval.offset);}
-#line 1362 "BFToJSF.yy.c"
+#line 43 "BFToJSF.y"
+              {printf("}");}
+#line 1366 "BFToJSF.yy.c"
     break;
 
   case 11:
 #line 45 "BFToJSF.y"
-                   {
-    if(data[data_pointer])
-    {
-        fseek(yyin,stack[stack_pointer] - 1,SEEK_SET);
-        offset = stack[stack_pointer] - 1;
-        yyrestart(yyin);
-    }
-    else
-    {
-       stack_pointer--;
-    }
-  
-}
-#line 1380 "BFToJSF.yy.c"
+          {printf("var data = new Array(30000).fill(0);var data_pointer = 0;");}
+#line 1372 "BFToJSF.yy.c"
     break;
 
 
-#line 1384 "BFToJSF.yy.c"
+#line 1376 "BFToJSF.yy.c"
 
       default: break;
     }
@@ -1612,7 +1604,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 61 "BFToJSF.y"
+#line 47 "BFToJSF.y"
 #include <stdio.h>
 #include "lex.yy.c"
 main() {
