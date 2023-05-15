@@ -6,3 +6,4 @@ bfinterpreter.tab.c
 bfinterpreter.tab.h
 BFToJSF
 BFToJSF.yy.c
+cod.js
