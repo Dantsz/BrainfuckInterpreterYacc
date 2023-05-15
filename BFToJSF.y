@@ -13,6 +13,14 @@ size_t stack_pointer;
 
 size_t data_pointer;
 
+const char * DDP_str;
+const char * DTP_str;
+const char * IDP_str;
+const char * ITP_str;
+const char * LOOP_BEGIN_str;
+const char * LOOP_END_str;
+const char * READ_str;
+const char * WRITE_str;
 
 %}
 
