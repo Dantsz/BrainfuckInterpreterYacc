@@ -41,7 +41,7 @@ EXP : PINCREMENT {if(data_pointer < DATA_SIZE ) {data_pointer ++;}};
     | WRITE {printf("%c",data[data_pointer]);}
     | while_statement
     ;
-loop_begin: LOOPBEGIN {$ = $1; stack_pointer++; stack[stack_pointer] = $$;}; 
+loop_begin: LOOPBEGIN {$$ = $1; stack_pointer++; stack[stack_pointer] = $$;}; 
 loop_end : LOOPEND {
     if(data[data_pointer])
     {
